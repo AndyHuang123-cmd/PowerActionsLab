@@ -20,7 +20,7 @@ jobs:
       uses: microsoft/powerplatform-actions/who-am-i@v0
       with:
         environment-url: 'https://org58acff7a.crm5.dynamics.com'
-        user-name: '<USERNAME>'
+        user-name: 'Qing.Fang'
         password-secret: ${{ secrets.password }}
 
     - name: export-solution action
