@@ -13,12 +13,27 @@ steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
 
-- task: PowerPlatformWhoAmi@0
+
+- task: PowerPlatformToolInstaller@0
   inputs:
-    authenticationType: 'PowerPlatformSPN'
-    PowerPlatformSPN: 'QingFangDefault'
+    DefaultVersion: true
+
+- task: PowerPlatformExportSolution@0
+  inputs:
+    authenticationType: 'PowerPlatformEnvironment'
+    PowerPlatformEnvironment: 'ClariosSFA'
+    SolutionName: 'ClariosSFA'
+    SolutionOutputFile: 'ClariosSFA'
+    AsyncOperation: true
+    MaxAsyncWaitTime: '60'
+
+- task: PowerPlatformImportSolution@0
+  inputs:
+    authenticationType: 'PowerPlatformEnvironment'
+    PowerPlatformEnvironment: 'AndyLogin'
+    SolutionInputFile: 'ClariosSFA'
+    AsyncOperation: true
+    MaxAsyncWaitTime: '60'
+    OverwriteUnmanagedCustomizations: true
+
