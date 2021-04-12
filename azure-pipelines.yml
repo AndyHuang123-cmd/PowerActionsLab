@@ -20,5 +20,5 @@ steps:
     DefaultVersion: true
 - task: PowerPlatformWhoAmi@0
   inputs:
-    authenticationType: 'PowerPlatformSPN'
-    PowerPlatformSPN: 'QingFangDefault'
+    authenticationType: 'PowerPlatformEnvironment'
+    PowerPlatformEnvironment: 'AndyLogin'
