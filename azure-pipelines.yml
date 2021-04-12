@@ -18,7 +18,21 @@ steps:
 - task: PowerPlatformToolInstaller@0
   inputs:
     DefaultVersion: true
-- task: PowerPlatformWhoAmi@0
+
+- task: PowerPlatformExportSolution@0
+  inputs:
+    authenticationType: 'PowerPlatformEnvironment'
+    PowerPlatformEnvironment: 'ClariosSFA'
+    SolutionName: 'ClariosSFA'
+    SolutionOutputFile: 'ClariosSFA'
+    AsyncOperation: true
+    MaxAsyncWaitTime: '60'
+
+- task: PowerPlatformImportSolution@0
   inputs:
     authenticationType: 'PowerPlatformEnvironment'
     PowerPlatformEnvironment: 'AndyLogin'
+    SolutionInputFile: 'ClariosSFA'
+    AsyncOperation: true
+    MaxAsyncWaitTime: '60'
+    OverwriteUnmanagedCustomizations: true
